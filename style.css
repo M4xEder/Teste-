@@ -139,6 +139,22 @@ body {
   background: #ffef00;
 }
 
+.cv-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: #ffef00;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255,239,0,0.3);
+}
 /* ========================= */
 /* MOBILE MENU */
 /* ========================= */
