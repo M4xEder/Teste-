@@ -1,25 +1,27 @@
+const track = document.querySelector(".track");
+const sections = document.querySelectorAll(".section");
 
-// Scroll vertical controlando horizontal
+// Altura fake pra scroll vertical
+document.body.style.height = `${sections.length * 100}vh`;
+
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
-  document.querySelector(".horizontal").style.transform =
-    `translateX(-${scrollTop}px)`;
+  const maxScroll = document.body.scrollHeight - innerHeight;
+  const maxTranslate = track.scrollWidth - innerWidth;
+
+  const progress = scrollTop / maxScroll;
+  track.style.transform = `translateX(-${progress * maxTranslate}px)`;
 });
 
-document.body.style.height = "400vw";
-
-// Intersection Observer
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    } else {
-      entry.target.classList.remove("show");
-    }
-  });
-}, {
-  threshold: 0.2
-});
+// Observer animações
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle("show", entry.isIntersecting);
+    });
+  },
+  { threshold: 0.3 }
+);
 
 document.querySelectorAll(".fade, .slide-left").forEach(el => {
   observer.observe(el);
