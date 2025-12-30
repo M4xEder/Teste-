@@ -1,11 +1,9 @@
-
 const track = document.querySelector(".track");
 const sections = document.querySelectorAll(".section");
 const links = document.querySelectorAll("nav a");
 const nav = document.getElementById("nav");
 const hamburger = document.getElementById("hamburger");
 
-/* ================= DESKTOP / MOBILE ================= */
 function isDesktop() {
   return window.innerWidth > 900;
 }
@@ -35,7 +33,7 @@ window.addEventListener("resize", () => {
 
 setHeight();
 
-/* ================= MENU CLICK ================= */
+/* MENU CLICK */
 links.forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
@@ -53,7 +51,7 @@ links.forEach(link => {
   });
 });
 
-/* ================= MENU ATIVO ================= */
+/* MENU ATIVO */
 window.addEventListener("scroll", () => {
   if (!isDesktop()) return;
 
@@ -62,12 +60,12 @@ window.addEventListener("scroll", () => {
   links[index]?.classList.add("active");
 });
 
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU */
 hamburger.addEventListener("click", () => {
   nav.classList.toggle("open");
 });
 
-/* ================= ANIMAÇÕES ================= */
+/* ANIMAÇÕES */
 const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
