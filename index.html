@@ -2,58 +2,241 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Portfólio</title>
+  <title>Portfólio Horizontal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ================= MENU ================= */
+    header.menu {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .menu-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #ffef00;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ================= HORIZONTAL ================= */
+    .scroll-container {
+      position: fixed;
+      inset: 0;
+    }
+
+    .track {
+      display: flex;
+      height: 100vh;
+      will-change: transform;
+    }
+
+    .section {
+      width: 100vw;
+      height: 100vh;
+      padding: 5rem 3rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inner {
+      max-width: 800px;
+    }
+
+    /* ================= GRID / PROJETOS ================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .card,
+    .project {
+      background: #111;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .projects {
+      margin-top: 2rem;
+    }
+
+    .project {
+      margin-bottom: 1rem;
+    }
+
+    /* ================= ANIMAÇÕES ================= */
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-120px);
+      transition: all 0.8s ease;
+    }
+
+    .slide-left.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 900px) {
+      .scroll-container {
+        position: relative;
+      }
+
+      .track {
+        flex-direction: column;
+        transform: none !important;
+        height: auto;
+      }
+
+      .section {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 5rem 1.5rem 2rem;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #000;
+        flex-direction: column;
+        width: 200px;
+        padding: 1rem;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<main class="horizontal">
+<header class="menu">
+  <div class="menu-container">
+    <span class="logo">SeuNome</span>
 
-  <!-- HOME -->
-  <section class="panel">
-    <div class="content fade">
-      <h1>Seu Nome</h1>
-      <p>Desenvolvedor / Criador</p>
-    </div>
-  </section>
+    <nav id="nav">
+      <a href="#" data-index="0" class="active">Home</a>
+      <a href="#" data-index="1">Sobre</a>
+      <a href="#" data-index="2">Formação</a>
+      <a href="#" data-index="3">Projetos</a>
+    </nav>
 
-  <!-- ABOUT -->
-  <section class="panel">
-    <div class="content fade">
-      <h2>Sobre mim</h2>
-      <p>Texto sobre você aqui.</p>
-    </div>
-  </section>
+    <div class="hamburger" id="hamburger">☰</div>
+  </div>
+</header>
 
-  <!-- FORMAÇÃO -->
-  <section class="panel">
-    <div class="content">
-      <h2 class="fade">Formação Acadêmica</h2>
+<div class="scroll-container">
+  <div class="track">
 
-      <div class="grid">
-        <div class="card fade">Pós-graduação – Segurança da Informação</div>
-        <div class="card fade">Graduação – Logística</div>
-        <div class="card fade">Curso – TI Google</div>
-        <div class="card fade">Outros cursos</div>
+    <section class="section">
+      <div class="inner fade">
+        <h1>Seu Nome</h1>
+        <p>Portfólio • Criador • Desenvolvedor</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJETOS -->
-  <section class="panel">
-    <div class="content">
-      <h2 class="fade">Projetos</h2>
-
-      <div class="projects">
-        <div class="project slide-left">Projeto 1</div>
-        <div class="project slide-left">Projeto 2</div>
-        <div class="project slide-left">Projeto 3</div>
+    <section class="section">
+      <div class="inner fade">
+        <h2>Sobre</h2>
+        <p>Breve descrição profissional.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <section class="section">
+      <div class="inner">
+        <h2 class="fade">Formação Acadêmica</h2>
+
+        <div class="grid">
+          <div class="card fade">Pós-graduação – Segurança da Informação</div>
+          <div class="card fade">Graduação – Logística</div>
+          <div class="card fade">Curso – TI Google</div>
+          <div class="card fade">Outros cursos</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <h2 class="fade">Projetos</h2>
+
+        <div class="projects">
+          <div class="project slide-left">Projeto 1</div>
+          <div class="project slide-left">Projeto 2</div>
+          <div class="project slide-left">Projeto 3</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
