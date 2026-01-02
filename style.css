@@ -5,10 +5,12 @@
 }
 
 body {
-  background: #0a0a0a;
   color: #fff;
-  font-family: Arial, sans-serif;
   overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  
 }
 
 /* Container horizontal */
@@ -50,17 +52,6 @@ body {
   border-radius: 10px;
 }
 
-/* ===== RESET BÁSICO ===== */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f5f7fa;
-  margin: 0;
-}
-
 /* ===== SEÇÃO PROJETOS ===== */
 .projetos {
   height: 100vh;
@@ -68,6 +59,9 @@ body {
   align-items: center;
   justify-content: center;
   background: #f0f2f5;
+}
+.js-scroll-list-item {
+  height: 155px;
 }
 
 /* ===== CONTAINER ===== */
