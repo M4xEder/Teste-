@@ -1,99 +1,108 @@
+/* =====================================================
+   RESET BÁSICO
+===================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  color: #fff;
-  overflow-x: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f5f7fa;
-  margin: 0;
-  
+  color: #333;
+  overflow-x: hidden;
 }
 
-/* Container horizontal */
-.scroll-container {
-  position: fixed;
-  inset: 0;
-}
-
-.track {
-  display: flex;
-  height: 100vh;
-  will-change: transform;
-}
-
+/* =====================================================
+   SEÇÕES GERAIS (SITE)
+===================================================== */
 .section {
-  width: 100vw;
-  height: 100vh;
-  padding: 4rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.inner {
-  max-width: 800px;
+/* =====================================================
+   MENU (caso já esteja usando)
+===================================================== */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  padding: 0.8rem 1.5rem;
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  z-index: 1000;
 }
 
-/* Formação */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  transition: color .3s;
 }
 
-.card {
-  background: #111;
-  padding: 2rem;
-  border-radius: 10px;
+nav a:hover,
+nav a.active {
+  color: #000;
 }
 
-/* ===== SEÇÃO PROJETOS ===== */
+/* =====================================================
+   SEÇÃO PROJETOS
+===================================================== */
 .projetos {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #f0f2f5;
 }
-.js-scroll-list-item {
-  height: 155px;
-}
 
-/* ===== CONTAINER ===== */
+/* CONTAINER GERAL */
 .projetos .scroll-list {
   width: 100%;
   max-width: 720px;
-  padding: 24px;
 }
 
-/* ===== SCROLL AREA ===== */
+/* ÁREA DO SMOOTH SCROLL */
 .projetos .js-scroll-list {
   height: 70vh;
   padding: 24px;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
   overflow: hidden;
 }
 
-/* esconde scrollbar */
+/* REMOVE BARRA PADRÃO */
 .projetos .scrollbar-track {
   display: none !important;
 }
 
-/* ===== ITENS ===== */
+/* CONTEÚDO INTERNO */
+.projetos .js-scroll-content {
+  position: relative;
+}
+
+/* =====================================================
+   ITENS (PROJETOS)
+===================================================== */
 .projetos .js-scroll-list-item {
   height: 160px;
   margin-bottom: 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #f8f9fb;
   border: 1px solid #e3e6eb;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 
   display: flex;
   align-items: center;
@@ -103,12 +112,16 @@ body {
   font-weight: 500;
   color: #333;
 
-  transition: 
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
     opacity .35s ease,
     transform .35s ease;
 }
 
-/* ===== ESTADOS ===== */
+/* =====================================================
+   ESTADOS CONTROLADOS PELO JS
+===================================================== */
 .projetos .js-scroll-list-item.item-hide {
   opacity: 0;
   transform: scale(0.85);
@@ -129,157 +142,32 @@ body {
   transform: scale(0.9);
 }
 
-/* espaço final para snap */
+/* ESPAÇO EXTRA PARA SNAP FINAL */
 .projetos .js-scroll-list-item:last-child {
   margin-bottom: 160px;
 }
 
-/* ===== MOBILE ===== */
+/* =====================================================
+   RESPONSIVO
+===================================================== */
 @media (max-width: 768px) {
-  .projetos {
-    padding: 3rem 1rem;
-    height: auto;
+
+  .section {
+    padding: 3rem 1.2rem;
+  }
+
+  nav {
+    gap: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .projetos .js-scroll-list {
     height: 60vh;
-  }
-}
-
-/* Projetos 
-.projects {
-  margin-top: 2rem;
-}
-
-.project {
-  background: #111;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
-*/
-/* Animações 
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.slide-left {
-  opacity: 0;
-  transform: translateX(-120px);
-  transition: all 0.8s ease;
-}
-
-.slide-left.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-*/
-
-/* ========================= */
-/* MENU */
-/* ========================= */
-
-.menu {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-}
-
-.menu-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.menu nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.menu nav a {
-  color: #aaa;
-  text-decoration: none;
-  font-size: 0.95rem;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.menu nav a.active,
-.menu nav a:hover {
-  color: #fff;
-}
-
-.menu nav a.active::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #ffef00;
-}
-
-.cv-button {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  background: #ffef00;
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cv-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(255,239,0,0.3);
-}
-/* ========================= */
-/* MOBILE MENU */
-/* ========================= */
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .menu nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #000;
-    flex-direction: column;
-    width: 200px;
-    padding: 1rem;
-    display: none;
+    padding: 20px;
   }
 
-  .menu nav.open {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
+  .projetos .js-scroll-list-item {
+    height: 140px;
+    font-size: 1rem;
   }
 }
