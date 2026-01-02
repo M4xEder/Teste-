@@ -50,7 +50,109 @@ body {
   border-radius: 10px;
 }
 
-/* Projetos */
+/* ===== RESET BÁSICO ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+}
+
+/* ===== SEÇÃO PROJETOS ===== */
+.projetos {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f2f5;
+}
+
+/* ===== CONTAINER ===== */
+.projetos .scroll-list {
+  width: 100%;
+  max-width: 720px;
+  padding: 24px;
+}
+
+/* ===== SCROLL AREA ===== */
+.projetos .js-scroll-list {
+  height: 70vh;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* esconde scrollbar */
+.projetos .scrollbar-track {
+  display: none !important;
+}
+
+/* ===== ITENS ===== */
+.projetos .js-scroll-list-item {
+  height: 160px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: #f8f9fb;
+  border: 1px solid #e3e6eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+
+  transition: 
+    opacity .35s ease,
+    transform .35s ease;
+}
+
+/* ===== ESTADOS ===== */
+.projetos .js-scroll-list-item.item-hide {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.projetos .js-scroll-list-item.item-focus {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.projetos .js-scroll-list-item.item-next {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+.projetos .js-scroll-list-item.item-next + .js-scroll-list-item {
+  opacity: 0.85;
+  transform: scale(0.9);
+}
+
+/* espaço final para snap */
+.projetos .js-scroll-list-item:last-child {
+  margin-bottom: 160px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .projetos {
+    padding: 3rem 1rem;
+    height: auto;
+  }
+
+  .projetos .js-scroll-list {
+    height: 60vh;
+  }
+}
+
+/* Projetos 
 .projects {
   margin-top: 2rem;
 }
@@ -61,8 +163,8 @@ body {
   margin-bottom: 1rem;
   border-radius: 10px;
 }
-
-/* Animações */
+*/
+/* Animações 
 .fade {
   opacity: 0;
   transform: translateY(40px);
@@ -84,6 +186,9 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
+
+*/
+
 /* ========================= */
 /* MENU */
 /* ========================= */
