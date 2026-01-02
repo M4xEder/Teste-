@@ -1,85 +1,107 @@
-if (window.innerWidth <= 900) {
-  return;
+/* ===============================
+   MENU MOBILE
+================================ */
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
 }
 
-$(document).ready(function () {
-
-  /* MENU MOBILE */
-  $('#hamburger').on('click', function () {
-    $('#nav').toggleClass('open');
-  });
-
-  /* FADE AO SCROLL */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-
-  /* SMOOTH SCROLL PROJETOS */
-  const Scrollbar = window.Scrollbar;
-  Scrollbar.use(window.OverscrollPlugin);
-
-  const container = document.querySelector('.js-scroll-list');
-  if (!container) return;
-
-  const scrollbar = Scrollbar.init(container, {
-    damping: 0.08,
-    plugins: {
-      overscroll: { effect: 'bounce' }
+/* ===============================
+   ANIMAÇÕES FADE / SLIDE
+================================ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
     }
   });
+}, { threshold: 0.15 });
 
-  const $items = $('.js-scroll-list-item');
+document.querySelectorAll('.fade, .slide-left').forEach(el => {
+  observer.observe(el);
+});
 
-  $items.addClass('item-hide');
-  $items.eq(0).addClass('item-focus').removeClass('item-hide');
-  $items.eq(1).addClass('item-next').removeClass('item-hide');
+/* ===============================
+   SCROLL HORIZONTAL (DESKTOP)
+================================ */
+const track = document.querySelector('.track');
+const sections = document.querySelectorAll('.section');
 
-  let isSnapping = false;
-  let timer;
+if (window.innerWidth > 900) {
+  let current = 0;
 
-  scrollbar.addListener(({ offset }) => {
-    if (isSnapping) return;
+  window.addEventListener('wheel', e => {
+    if (document.querySelector('.js-scroll-list:hover')) return;
 
-    let closest = 0;
-    let min = Infinity;
+    if (e.deltaY > 0 && current < sections.length - 1) {
+      current++;
+    } else if (e.deltaY < 0 && current > 0) {
+      current--;
+    }
 
-    $items.each(function (i) {
-      const dist = Math.abs(offset.y - $(this).position().top);
-      if (dist < min) {
-        min = dist;
-        closest = i;
+    track.style.transform = `translateX(-${current * 100}vw)`;
+  });
+
+  /* MENU LINKS */
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      current = Number(link.dataset.index);
+      track.style.transform = `translateX(-${current * 100}vw)`;
+
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+}
+
+/* ===============================
+   SCROLL PROJETOS (DESKTOP)
+================================ */
+if (window.innerWidth > 900) {
+
+  const Scrollbar = window.Scrollbar;
+  const list = document.querySelector('.js-scroll-list');
+
+  if (list && Scrollbar) {
+
+    Scrollbar.use(window.OverscrollPlugin);
+
+    const scrollbar = Scrollbar.init(list, {
+      damping: 0.08,
+      alwaysShowTracks: false,
+      plugins: {
+        overscroll: true
       }
     });
 
-    $items.removeClass('item-focus item-next').addClass('item-hide');
-    $items.eq(closest).addClass('item-focus').removeClass('item-hide');
-    $items.eq(closest + 1).addClass('item-next').removeClass('item-hide');
-  });
+    const items = document.querySelectorAll('.js-scroll-list-item');
 
-  scrollbar.addListener(() => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      let target = 0;
-      let min = Infinity;
+    if (items.length) {
+      items[0].classList.add('item-focus');
+      if (items[1]) items[1].classList.add('item-next');
+    }
 
-      $items.each(function () {
-        const dist = Math.abs(scrollbar.offset.y - $(this).position().top);
-        if (dist < min) {
-          min = dist;
-          target = $(this).position().top;
+    scrollbar.addListener(status => {
+      const top = status.offset.y;
+
+      items.forEach((item, index) => {
+        const offset = item.offsetTop;
+        const distance = Math.abs(top - offset);
+
+        item.classList.remove('item-focus', 'item-next', 'item-hide');
+
+        if (distance < 60) {
+          item.classList.add('item-focus');
+          if (items[index + 1]) items[index + 1].classList.add('item-next');
+        } else if (offset < top) {
+          item.classList.add('item-hide');
         }
       });
-
-      isSnapping = true;
-      scrollbar.scrollTo(0, target, 600);
-      setTimeout(() => isSnapping = false, 650);
-    }, 120);
-  });
-
-});
+    });
+  }
+}
