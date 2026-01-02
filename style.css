@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-/* MENU */
+/* ================= MENU ================= */
 .menu {
   position: fixed;
   width: 100%;
@@ -47,9 +48,11 @@ nav a.active {
 
 .hamburger {
   display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-/* HORIZONTAL */
+/* ================= SCROLL HORIZONTAL ================= */
 .scroll-container {
   position: fixed;
   inset: 0;
@@ -60,11 +63,11 @@ nav a.active {
   height: 100vh;
 }
 
-/* SEÇÕES */
+/* ================= SEÇÕES ================= */
 .section {
   width: 100vw;
   height: 100vh;
-  padding: 5rem 3rem;
+  padding: 5rem 3rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +82,7 @@ nav a.active {
   text-align: center;
 }
 
-/* ANIMAÇÕES */
+/* ================= ANIMAÇÕES ================= */
 .fade {
   opacity: 0;
   transform: translateY(40px);
@@ -91,7 +94,7 @@ nav a.active {
   transform: translateY(0);
 }
 
-/* TIMELINE */
+/* ================= EXPERIÊNCIA ================= */
 .timeline {
   border-left: 2px solid #222;
   padding-left: 2rem;
@@ -101,7 +104,7 @@ nav a.active {
   margin-bottom: 2rem;
 }
 
-/* FORMAÇÃO */
+/* ================= FORMAÇÃO ================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
@@ -114,7 +117,7 @@ nav a.active {
   border-radius: 10px;
 }
 
-/* CURRÍCULO */
+/* ================= CURRÍCULO ================= */
 .cv-button {
   display: inline-block;
   margin-top: 2rem;
@@ -126,9 +129,10 @@ nav a.active {
   font-weight: bold;
 }
 
-/* PROJETOS */
+/* ================= PROJETOS ================= */
 .projetos .scroll-list {
   max-width: 700px;
+  width: 100%;
 }
 
 .projetos .js-scroll-list {
@@ -174,8 +178,32 @@ nav a.active {
   margin-bottom: 160px;
 }
 
-/* MOBILE */
+/* =====================================================
+   📱 MOBILE / TABLET
+===================================================== */
 @media (max-width: 900px) {
+
+  /* MENU */
+  .hamburger {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #000;
+    flex-direction: column;
+    width: 220px;
+    padding: 1rem;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  /* DESLIGA SCROLL HORIZONTAL */
   .scroll-container {
     position: relative;
   }
@@ -183,10 +211,24 @@ nav a.active {
   .track {
     flex-direction: column;
     height: auto;
+    transform: none !important;
   }
 
   .section {
+    width: 100%;
     height: auto;
     min-height: 100vh;
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  /* PROJETOS MOBILE = LISTA NORMAL */
+  .projetos .js-scroll-list {
+    height: auto;
+    overflow: visible;
+  }
+
+  .js-scroll-list-item {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
