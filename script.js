@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+  if (window.innerWidth <= 900) {
+  return;
+}
   /* MENU MOBILE */
   $('#hamburger').on('click', function () {
     $('#nav').toggleClass('open');
