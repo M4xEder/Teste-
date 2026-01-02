@@ -5,142 +5,8 @@
   <title>Portfólio Horizontal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: #0a0a0a;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* MENU */
-    header.menu {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-    }
-
-    .menu-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav { display: flex; gap: 1.5rem; }
-    nav a { color: #aaa; text-decoration: none; }
-    nav a.active { color: #fff; border-bottom: 2px solid #ffef00; }
-
-    .hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
-
-    /* HORIZONTAL */
-    .scroll-container { position: fixed; inset: 0; }
-    .track { display: flex; height: 100vh; will-change: transform; }
-
-    .section {
-      width: 100vw;
-      height: 100vh;
-      padding: 5rem 3rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .inner { max-width: 850px; }
-
-    /* EXPERIÊNCIA */
-    .timeline {
-      margin-top: 2rem;
-      border-left: 2px solid #222;
-      padding-left: 2rem;
-    }
-
-    .job {
-      margin-bottom: 2rem;
-    }
-
-    .job h3 {
-      margin-bottom: 0.3rem;
-    }
-
-    .job span {
-      font-size: 0.85rem;
-      color: #aaa;
-    }
-
-    .job p {
-      margin-top: 0.5rem;
-      line-height: 1.5;
-    }
-
-    /* GRID / PROJETOS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .card, .project {
-      background: #111;
-      padding: 1.5rem;
-      border-radius: 10px;
-    }
-
-    .projects { margin-top: 2rem; }
-    .project { margin-bottom: 1rem; }
-
-    /* ANIMAÇÕES */
-    .fade {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-
-    .fade.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .slide-left {
-      opacity: 0;
-      transform: translateX(-120px);
-      transition: all 0.8s ease;
-    }
-
-    .slide-left.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* MOBILE */
-    @media (max-width: 900px) {
-      .scroll-container { position: relative; }
-      .track { flex-direction: column; transform: none !important; height: auto; }
-      .section { width: 100%; height: auto; min-height: 100vh; padding: 5rem 1.5rem 2rem; }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: #000;
-        flex-direction: column;
-        width: 200px;
-        padding: 1rem;
-      }
-
-      nav.open { display: flex; }
-      .hamburger { display: block; }
-    }
-  </style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -190,35 +56,21 @@
           <div class="job fade">
             <h3>Cargo – Empresa</h3>
             <span>2022 – Atual</span>
-            <p>Principais responsabilidades e resultados alcançados.</p>
-          </div>
-
-          <div class="job fade">
-            <h3>Cargo – Empresa</h3>
-            <span>2020 – 2022</span>
-            <p>Descrição do trabalho e tecnologias utilizadas.</p>
+            <p>Principais responsabilidades.</p>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- CURRÍCULO -->
-<section class="section">
-  <div class="inner fade" style="text-align:center">
-    <h2>Currículo</h2>
-    <p style="margin:1rem 0; color:#aaa">
-      Baixe meu currículo completo em PDF
-    </p>
 
-    <a 
-      href="assets/curriculo-max-santos.pdf"
-      download
-      class="cv-button"
-    >
-      ⬇ Download do Currículo
-    </a>
-  </div>
-</section>
+    <!-- CURRÍCULO -->
+    <section class="section">
+      <div class="inner fade center">
+        <h2>Currículo</h2>
+        <a href="assets/curriculo.pdf" download class="cv-button">
+          ⬇ Download do Currículo
+        </a>
+      </div>
+    </section>
 
     <!-- FORMAÇÃO -->
     <section class="section">
@@ -226,29 +78,45 @@
         <h2 class="fade">Formação Acadêmica</h2>
 
         <div class="grid">
-          <div class="card fade">Pós-graduação – Segurança da Informação</div>
-          <div class="card fade">Graduação – Logística</div>
-          <div class="card fade">Curso – TI Google</div>
+          <div class="card fade">Pós-graduação</div>
+          <div class="card fade">Graduação</div>
+          <div class="card fade">Cursos</div>
         </div>
       </div>
     </section>
 
     <!-- PROJETOS -->
-    <section class="section">
+    <section class="section projetos">
+
       <div class="inner">
         <h2 class="fade">Projetos</h2>
 
-        <div class="projects">
-          <div class="project slide-left">Projeto 1</div>
-          <div class="project slide-left">Projeto 2</div>
-          <div class="project slide-left">Projeto 3</div>
+        <div class="scroll-list">
+          <div class="js-scroll-list">
+            <div class="js-scroll-content">
+
+              <div class="js-scroll-list-item">Projeto 01</div>
+              <div class="js-scroll-list-item">Projeto 02</div>
+              <div class="js-scroll-list-item">Projeto 03</div>
+              <div class="js-scroll-list-item">Projeto 04</div>
+
+            </div>
+          </div>
         </div>
       </div>
+
     </section>
 
   </div>
 </div>
 
+<!-- LIBS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js"></script>
+<script src="https://unpkg.com/smooth-scrollbar@8.8.4/dist/plugins/overscroll.js"></script>
+
+<!-- JS -->
 <script src="script.js"></script>
+
 </body>
 </html>
